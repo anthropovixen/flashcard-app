@@ -16,6 +16,7 @@ Users can select amount of cards to be shown. Each card has a question, options 
 
 - CSS
 - HTML
+- JavaScript
 - React
 
 ### Author
