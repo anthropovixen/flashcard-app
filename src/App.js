@@ -1,8 +1,13 @@
+// Import useRef
 import React, { useState, useEffect, useRef } from 'react';
-import FlashcardList from './FlashcardList';
-import './app.css';
 import axios from 'axios';
 
+import FlashcardList from './FlashcardList';
+
+// Import styling
+import './app.css';
+
+// Remove sample data and initialise state with empty arrays for flashcards and categories of questions
 function App() {
 	const [flashcards, setFlashcards] = useState([]);
 	const [categories, setCategories] = useState([]);
@@ -10,6 +15,7 @@ function App() {
 	const categoryEl = useRef();
 	const amountEl = useRef();
 
+	// Get categories data from API
 	useEffect(() => {
 		axios.get('https://opentdb.com/api_category.php').then((res) => {
 			setCategories(res.data.trivia_categories);
@@ -18,14 +24,17 @@ function App() {
 
 	useEffect(() => {}, []);
 
+	// Function to decode html text
 	function decodeString(str) {
 		const textArea = document.createElement('textarea');
 		textArea.innerHTML = str;
 		return textArea.value;
 	}
 
+	// Function to handle submits on forms and prevent default from happening
 	function handleSubmit(e) {
 		e.preventDefault();
+		// Amount of questions and categories available from connection with API
 		axios
 			.get('https://opentdb.com/api.php', {
 				params: {
@@ -42,9 +51,11 @@ function App() {
 							answer,
 						];
 						return {
+							// add id with date
 							id: `${index}-${Date.now()}`,
 							question: decodeString(questionItem.question),
 							answer: answer,
+							// randomise disposition of options at flashcard
 							options: options.sort(() => Math.random() - 0.5),
 						};
 					})
@@ -55,6 +66,7 @@ function App() {
 
 	return (
 		<>
+			{/* Create header form with categories, amount of questions and generate button */}
 			<form className="header" onSubmit={handleSubmit}>
 				<div className="form-group">
 					<label htmlFor="category">Category</label>
