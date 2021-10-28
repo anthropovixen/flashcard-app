@@ -1,6 +1,6 @@
 # FLASHCARDS APP
 
-This application is a Flashcards App built wiht HTML, CSS and Reacr that loads data from a trivia API and enables viewing of flashcards from different categories.
+This application is a Flashcards App built with HTML, CSS and React that loads data from a trivia API and enables viewing of flashcards from different categories.
 
 Users can select amount of cards to be shown. Each card has a question, options at the front and the correct answer at the back. The API used for this project is the [Open Trivia Database](https://opentdb.com).
 
